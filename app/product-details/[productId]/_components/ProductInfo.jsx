@@ -1,41 +1,106 @@
+'use client';
 import React from 'react';
-import { BadgeCheck, AlertOctagon } from 'lucide-react';
+import { BadgeCheck, AlertOctagon, LogIn } from 'lucide-react';
+import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
+import CartApis from '@/app/_utils/CartApis';
 
-function ProductInfo({ product }) {
+function ProductInfo({ product, isLoading }) {
+  const { user } = useUser();
+  const router = useRouter();
+
+  const handleAddToCart = () => {
+    if (!user) {
+      router.push('/sign-in');
+    } else {
+      const data = {
+        userName: user.fullName,
+        email: user.primaryEmailAddress.emailAddress,
+        products: [product?.id]
+      }
+  
+      // Log the payload to ensure it's correct
+      console.log('Payload sent to API:', data);
+  
+      CartApis.addToCart(data)
+        .then(res => {
+          console.log('Cart added', res);         
+        })
+        .catch(err => {
+          // Log the full error response for more insights
+          console.log('Error adding to cart', err.response || err);
+        });
+    }
+  };
+  
+
   return (
     <div className="p-8 bg-white rounded-lg shadow-lg space-y-6 w-full md:w-[400px]">
       {/* Product Title */}
-      <h2 className="text-2xl font-bold text-gray-900">{product?.attributes?.title}</h2>
-      
+      {isLoading ? (
+        <div className="h-6 w-3/4 bg-gray-200 rounded-md animate-pulse"></div>
+      ) : (
+        <h2 className="text-2xl font-bold text-gray-900">{product?.attributes?.title}</h2>
+      )}
+
       {/* Product Category */}
-      <h3 className="text-lg text-gray-500 tracking-wide">{product?.attributes?.category}</h3>
+      {isLoading ? (
+        <div className="h-4 w-1/2 bg-gray-200 rounded-md animate-pulse"></div>
+      ) : (
+        <h3 className="text-lg text-gray-500 tracking-wide">{product?.attributes?.category}</h3>
+      )}
 
       {/* Product Description */}
-      <p className="text-sm text-gray-700 leading-relaxed">
-        {product?.attributes?.description[0]?.children[0]?.text}
-      </p>
+      {isLoading ? (
+        <div className="space-y-2">
+          <div className="h-4 w-full bg-gray-200 rounded-md animate-pulse"></div>
+          <div className="h-4 w-3/4 bg-gray-200 rounded-md animate-pulse"></div>
+          <div className="h-4 w-5/6 bg-gray-200 rounded-md animate-pulse"></div>
+        </div>
+      ) : (
+        <p className="text-sm text-gray-700 leading-relaxed">
+          {product?.attributes?.description?.[0]?.children?.[0]?.text}
+        </p>
+      )}
 
       {/* Stock Status with Icon */}
-      <div className="flex items-center text-md text-gray-700 gap-2">
-        {product?.attributes?.stock ? (
-          <BadgeCheck className="w-5 h-5 text-green-500" />
-        ) : (
-          <AlertOctagon className="w-5 h-5 text-red-500" />
-        )}
-        <span>{product?.attributes?.stock ? 'In Stock' : 'Out of Stock'} - Eligible for Instant Delivery</span>
-      </div>
+      {isLoading ? (
+        <div className="h-5 w-1/2 bg-gray-200 rounded-md animate-pulse"></div>
+      ) : (
+        <div className="flex items-center text-md text-gray-700 gap-2">
+          {product?.attributes?.stock ? (
+            <BadgeCheck className="w-5 h-5 text-green-500" />
+          ) : (
+            <AlertOctagon className="w-5 h-5 text-red-500" />
+          )}
+          <span>
+            {product?.attributes?.stock ? 'In Stock' : 'Out of Stock'} - Eligible for Instant Delivery
+          </span>
+        </div>
+      )}
 
       {/* Price Section */}
-      <div className="text-3xl font-bold text-blue-600">
-        ${product?.attributes?.price}
-      </div>
+      {isLoading ? (
+        <div className="h-8 w-1/3 bg-gray-200 rounded-md animate-pulse"></div>
+      ) : (
+        <div className="text-3xl font-bold text-blue-600">
+          ${product?.attributes?.price}
+        </div>
+      )}
 
       {/* Action Buttons */}
-      <div className="mt-6 flex space-x-4">
-        <button className="w-full md:w-auto px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-500 transition duration-300">
-          Add to Cart
-        </button>
-      </div>
+      {isLoading ? (
+        <div className="h-12 w-full bg-gray-200 rounded-lg animate-pulse"></div>
+      ) : (
+        <div className="mt-6 flex space-x-4">
+          <button
+            onClick={handleAddToCart}
+            className="w-full md:w-auto px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-500 transition duration-300"
+          >
+            Add to Cart
+          </button>
+        </div>
+      )}
     </div>
   );
 }

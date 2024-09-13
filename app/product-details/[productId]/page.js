@@ -23,22 +23,25 @@ function ProductDetails({ params }) {
   };
   const getProductListByCategory = (product) => {
     ProductApis.getProductsByCategory(product?.attributes.category).then(
-      (res => {
-        console.log(res.data.data);
-        setProductList(res.data.data);
-      })
+      (res) => {
+        console.log(res?.data?.data);
+        setProductList(res?.data?.data);
+      }
     );
   };
   return (
     <div className="px-10 py-8 md:px-28">
       <BreadCrumb path={path} />
       <div className="grid justify-around grid-cols-1 gap-5 mt-10 sm:gap-0 sm:grid-cols-2">
-        <ProductBanner product={productDetails} />
-        <ProductInfo product={productDetails} />
+      <ProductBanner product={productDetails} isLoading={!productDetails?.attributes} />
+
+      <ProductInfo product={productDetails} isLoading={!productDetails?.attributes} />
+
       </div>
       <div>
         <h2 className="mt-24 mb-4 text-xl">Similar Products</h2>
-        <ProductList productList={productList} />
+        <ProductList productList={productList} isLoading={!productList.length} />
+
       </div>
     </div>
   );

@@ -1,38 +1,44 @@
 'use client';
-import React from 'react';
-import { BadgeCheck, AlertOctagon, LogIn } from 'lucide-react';
+import React, { useContext } from 'react';  // Import useContext from React
+import { BadgeCheck, AlertOctagon } from 'lucide-react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import CartApis from '@/app/_utils/CartApis';
+import { CartContext } from '@/app/_context/CartContext';
 
 function ProductInfo({ product, isLoading }) {
   const { user } = useUser();
   const router = useRouter();
+  const { cart, setCart } = useContext(CartContext);  // Correctly using useContext
 
   const handleAddToCart = () => {
     if (!user) {
       router.push('/sign-in');
     } else {
       const data = {
-        userName: user.fullName,
-        email: user.primaryEmailAddress.emailAddress,
-        products: [product?.id]
-      }
-  
+        data: {
+          userName: user.fullName,
+          email: user.primaryEmailAddress.emailAddress,
+          products: [product?.id]
+        }
+      };
+
       // Log the payload to ensure it's correct
       console.log('Payload sent to API:', data);
-  
+
       CartApis.addToCart(data)
         .then(res => {
-          console.log('Cart added', res);         
+          console.log('Cart added successfully:', res);
+          setCart(oldCart => [...oldCart, {
+            id: res?.data?.data?.id,
+            product
+          }]);
         })
         .catch(err => {
-          // Log the full error response for more insights
-          console.log('Error adding to cart', err.response || err);
+          console.error('Error while creating cart:', err.response?.data || err);
         });
     }
   };
-  
 
   return (
     <div className="p-8 bg-white rounded-lg shadow-lg space-y-6 w-full md:w-[400px]">

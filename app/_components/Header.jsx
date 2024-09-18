@@ -60,27 +60,27 @@ function Header() {
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-sm">
                 <li>
-                  <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
+                  <a  style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
                     About
                   </a>
                 </li>
                 <li>
-                  <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
+                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
                     Careers
                   </a>
                 </li>
                 <li>
-                  <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
+                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
                     Services
                   </a>
                 </li>
                 <li>
-                  <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
+                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
                     Projects
                   </a>
                 </li>
                 <li>
-                  <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
+                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
                     Blog
                   </a>
                 </li>
@@ -110,7 +110,7 @@ function Header() {
             ) : (
               <div className="flex items-center gap-4">
                 <h2 className="flex gap-1 text-semibold">({cart?.length})</h2>
-                <ShoppingCartIcon
+                <ShoppingCartIcon style={{ color: '#372b86' }}
                   className="h-6 w-6 text-gray-500 cursor-pointer"
                   onClick={() => setOpenCart(!openCart)}  // Toggle cart view
                 />

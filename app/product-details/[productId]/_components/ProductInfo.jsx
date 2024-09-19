@@ -1,10 +1,10 @@
 'use client';
-import React, { useContext } from 'react';  // Import useContext from React
+import React, { useContext } from 'react';
 import { BadgeCheck, AlertOctagon } from 'lucide-react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
-import CartApis from '@/app/_utils/CartApis';
-import { CartContext } from '@/app/_context/CartContext';
+import CartApis from '../../../_utils/CartApis';
+import { CartContext } from '../../../_context/CartContext';
 
 function ProductInfo({ product, isLoading }) {
   const { user } = useUser();

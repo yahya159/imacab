@@ -25,11 +25,12 @@ function ProductSection() {
     <div className='px-10 md:px-20'>
       <h2 className='font-bold text-[20px] my-3'>
         Brand New
-        <Link href="">
-          <span className='font-normal text-[14px] float-right text-primary flex items-center cursor-pointer hover:text-blue-900'>
-            View All Collection <ArrowRight className='h-4 ml-1' />
-          </span>
-        </Link>
+        <Link href="/products">
+  <span className='font-normal text-[14px] float-right text-primary flex items-center cursor-pointer hover:text-blue-900'>
+    View All Collection <ArrowRight className='h-4 ml-1' />
+  </span>
+</Link>
+
       </h2>
       <ProductList productList={productList} isLoading={isLoading} />
     </div>

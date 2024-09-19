@@ -53,8 +53,9 @@ function ContactUs() {
   };
 
   return (
-    <div 
-      className="w-full h-screen flex items-center justify-center mt-10" 
+    <div
+      id="contact-us" // Add this line
+      className="w-full h-screen flex items-center justify-center mt-10"
       style={{
         backgroundImage: 'url("https://www.imacab.net/wp-content/uploads/2022/07/lost-places-1801660_1280-1.jpg")',
         backgroundSize: 'cover',

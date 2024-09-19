@@ -6,6 +6,7 @@ import { UserButton, useUser } from '@clerk/nextjs';
 import { ShoppingCartIcon } from 'lucide-react';
 import { CartContext } from '../_context/CartContext';
 import CartApis from '../_utils/CartApis';
+import Link from 'next/link';
 
 function Header() {
   const { user } = useUser();
@@ -60,29 +61,27 @@ function Header() {
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-sm">
                 <li>
-                  <a  style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
+                  <a  style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="/about-ingelec">
                     About
                   </a>
                 </li>
                 <li>
-                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
-                    Careers
+                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="/products">
+                    Products
                   </a>
                 </li>
                 <li>
-                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
-                    Services
-                  </a>
+                <Link href="/#contact-us">
+                <span
+                  style={{ color: '#372b86' }}
+                  className="text-gray-500 transition hover:text-gray-500/75"
+                >
+                  Contact Us
+                </span>
+                </Link>
                 </li>
                 <li>
-                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
-                    Projects
-                  </a>
-                </li>
-                <li>
-                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="#">
-                    Blog
-                  </a>
+            
                 </li>
               </ul>
             </nav>

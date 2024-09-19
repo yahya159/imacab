@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 function Hero() {
@@ -10,7 +11,7 @@ function Hero() {
             <span
               className="bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent drop-shadow-lg"
             >
-              INGELEC
+              IMACAB
             </span>
             , YOUR PARTNER IN ELECTRIC CABLES
           </h1>
@@ -28,10 +29,11 @@ function Hero() {
 
         {/* Image Section */}
         <div className="mt-10 lg:mt-0 lg:w-1/2 flex justify-center">
-          <img  
-            className="w-full h-auto lg:max-w-2xl"
-            src="https://merakiui.com/images/components/Catalogue-pana.svg"
-            alt="Catalogue illustration"
+          <Image
+            src="/Engineer-working-with-server-equipment-and-switchboard-[Converted].png"
+            alt="Hero Image"
+            width={550}
+            height={550}
           />
         </div>
       </div>

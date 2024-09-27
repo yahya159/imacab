@@ -17,6 +17,7 @@ function Checkout() {
 		<Elements stripe={stripePromise} options={options}>
 			<CheckoutForm amount={Number(searchParams.get('amount'))} />
 		</Elements>
+		
 	)
 }
 

@@ -100,7 +100,7 @@ function Header() {
                 <div className="hidden sm:flex">
                   <a
                     className="rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-blue-700"
-                    href="#"
+                    href="/sign-up"
                   >
                     Register
                   </a>
@@ -143,30 +143,29 @@ function Header() {
         {isMenuOpen && (
           <nav aria-label="Mobile Menu" className="md:hidden">
             <ul className="flex flex-col items-center gap-4 text-sm">
+              
               <li>
-                <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
-                  About
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
-                  Blog
-                </a>
+                  <a  style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="/about-ingelec">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a style={{ color: '#372b86' }} className="text-gray-500 transition hover:text-gray-500/75" href="/products">
+                    Products
+                  </a>
+                </li>
+                <li>
+                <Link href="/#contact-us">
+                <span
+                  style={{ color: '#372b86' }}
+                  className="text-gray-500 transition hover:text-gray-500/75"
+                >
+                  Contact Us
+                </span>
+                </Link>
+                </li>
+                <li>
+                
               </li>
             </ul>
           </nav>

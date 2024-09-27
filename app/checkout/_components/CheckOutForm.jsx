@@ -96,10 +96,12 @@ const CheckoutForm = ({ amount }) => {
 	}
 	return (
 		<form onSubmit={handleSubmit}>
-			<div className='mx-32 md:mx-[320px] mt-12'><PaymentElement />
-				<button className='w-full p-2 mt-4 text-white rounded-md bg-primary'>Submit</button>
+			<div className='mx-32 md:mx-[320px] mt-12 p-6 bg-gradient-to-r from-gray-100 to-gray-600 shadow-lg rounded-lg'>
+				<PaymentElement />
+				<button className='w-full p-2 mt-4 text-white rounded-md bg-primary hover:bg-blue-600 transition duration-300 	 transform hover:scale-105 shadow-md'>
+					Submit
+				</button>
 			</div>
-
 		</form>
 	);
 };
